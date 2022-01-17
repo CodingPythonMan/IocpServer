@@ -1,0 +1,5 @@
+1. ERP가 무엇인가?
+-> Enterprise Resource Planning의 약자로, 전산적 자원 관리 시스템이라고 불린다.
+하는 일은 기업의 모든 자원을 관리하여 최적화된 기업 활동을 통합, 
+
+2. Framework가 무엇인가?
