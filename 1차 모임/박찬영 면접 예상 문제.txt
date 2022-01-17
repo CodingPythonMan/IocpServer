@@ -1,0 +1,80 @@
+1. Framework는 무엇인가
+
+  
+
+2. MVC 패턴이란?
+
+
+
+3. 객체(object)란?
+
+
+
+4. 스레드(Multi threaded)
+
+
+
+5. JVM의 구성
+
+
+
+
+6. Collection에서 데이터를 저장 하는 3가지와 그 특징
+
+
+
+7. 동기화를 사용하는 이유
+
+
+8. 더블버퍼링을 사용하는 이유
+
+  
+9. Cookie 와 Session 의 차이
+
+
+
+10. JSP 와 자바스크립트의 차이
+
+
+
+11. AJAX란?
+
+
+
+12. OSI 7 Layers (OSI 7 계층 구조) 7계층을 모두 말하시오
+
+
+
+13. DCL (Data Control Language) 명령어를 전부 말하시오
+
+
+
+14. DML (Data Manipulation Language) 명령어를 전부 말하시오
+
+ 
+
+
+15. ERD(Entity Relationship Diagram)란?
+
+  
+
+
+16. 엔티티빈 (EntityBean) 이란
+
+    
+
+ 
+17. EJB의 사용 목적
+
+
+
+18. Connection Pool 개념
+
+   
+
+19. OverIoading , Overriding 이란?
+
+ 
+
+20. XML이란?
+
