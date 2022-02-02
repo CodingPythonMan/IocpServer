@@ -15,3 +15,4 @@
 2. 블로그 글 작성
 	- [CI/CD 가 무엇일까](https://velog.io/@robolab1902/CICD%EA%B0%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EC%98%A4)
 	- [DI 가 무엇일까](https://velog.io/@robolab1902/Spring-DI%EA%B0%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C)
+	- [Log4J 취약점에 대해서](https://velog.io/@robolab1902/Log4J-%EC%B7%A8%EC%95%BD%EC%A0%90%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C)
