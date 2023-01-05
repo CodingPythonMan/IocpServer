@@ -2,15 +2,18 @@
 #include <iostream>
 #include "CorePch.h"
 #include <thread>
+#include <atomic>
 
-int32 sum = 0;
+// atomic : All-or-Nothing
+//int32 sum = 0;
+std::atomic<int32> sum = 0;
 
 void Add()
 {
     for (int32 i = 0; i < 1000000; i++)
     {
-        sum++;
-    }
+		sum++;
+	}
 }
 
 void Sub()
