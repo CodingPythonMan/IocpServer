@@ -14,22 +14,12 @@ public:
 		bool expected = false;
 		bool desired = true;
 
-		/*// CAS 의사코드
-		if (_locked == expected)
-		{
-			expected = _locked;
-			_locked = desired;
-			return true;
-		}
-		else
-		{
-			expected = _locked;
-			return false;
-		}*/
-
 		while (_locked.compare_exchange_strong(expected, desired) == false)
 		{
 			expected = false;
+
+			std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			//this_thread::yield();
 		}
 	}
 
