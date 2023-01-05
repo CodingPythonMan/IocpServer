@@ -4,62 +4,32 @@
 #include <thread>
 #include <atomic>
 #include <mutex>
+#include "AccountManager.h"
+#include "UserManager.h"
 
-std::vector<int32> v;
-
-// Mutual Exclusive (상호배타적)
-std::mutex m;
-
-// RAII(Resource Acquisition is initialization)
-template<typename T> 
-class LockGuard
+void Func1()
 {
-public:
-	LockGuard(T& m)
+	for (int32 i = 0; i < 1000; i++)
 	{
-		_mutex = &m;
-		_mutex->lock();
+		UserManager::Instance()->ProcessSave();
 	}
+}
 
-	~LockGuard()
-	{
-		_mutex->unlock();
-	}
-
-private:
-	T* _mutex;
-};
-
-void Push()
+void Func2()
 {
-	for (int32 i = 0; i < 10000; i++)
+	for (int32 i = 0; i < 1000; i++)
 	{
-		// 자물쇠 잠그기
-		//std::unique_lock<std::mutex> uniqueLock(m, std::defer_lock);
-		//uniqueLock.lock();
-		//std::lock_guard<std::mutex> lockGuard(m);
-		//LockGuard<std::mutex> lockGuard(m);
-		//m.lock();
-
-		v.push_back(i);
-
-		if (i == 5000)
-		{
-			break;
-		}
-
-		// 자물쇠 풀기
-		//m.unlock();
+		AccountManager::Instance()->ProcessLogin();
 	}
 }
 
 int main()
 {
-	std::thread t1(Push);
-	std::thread t2(Push);
+	std::thread t1(Func1);
+	std::thread t2(Func2);
 
 	t1.join();
 	t2.join();
 
-	std::cout << v.size() << std::endl;
+	std::cout << "Jobs Done" << std::endl;
 }
