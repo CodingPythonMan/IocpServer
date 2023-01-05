@@ -3,36 +3,63 @@
 #include "CorePch.h"
 #include <thread>
 #include <atomic>
+#include <mutex>
 
-// atomic : All-or-Nothing
-//int32 sum = 0;
-std::atomic<int32> sum = 0;
+std::vector<int32> v;
 
-void Add()
+// Mutual Exclusive (상호배타적)
+std::mutex m;
+
+// RAII(Resource Acquisition is initialization)
+template<typename T> 
+class LockGuard
 {
-    for (int32 i = 0; i < 1000000; i++)
-    {
-		sum++;
-	}
-}
-
-void Sub()
-{
-	for (int32 i = 0; i < 1000000; i++)
+public:
+	LockGuard(T& m)
 	{
-		sum--;
+		_mutex = &m;
+		_mutex->lock();
+	}
+
+	~LockGuard()
+	{
+		_mutex->unlock();
+	}
+
+private:
+	T* _mutex;
+};
+
+void Push()
+{
+	for (int32 i = 0; i < 10000; i++)
+	{
+		// 자물쇠 잠그기
+		//std::unique_lock<std::mutex> uniqueLock(m, std::defer_lock);
+		//uniqueLock.lock();
+		//std::lock_guard<std::mutex> lockGuard(m);
+		//LockGuard<std::mutex> lockGuard(m);
+		//m.lock();
+
+		v.push_back(i);
+
+		if (i == 5000)
+		{
+			break;
+		}
+
+		// 자물쇠 풀기
+		//m.unlock();
 	}
 }
 
 int main()
 {
-	Add();
-	Sub();
-	std::cout << sum << std::endl;
+	std::thread t1(Push);
+	std::thread t2(Push);
 
-	std::thread t1(Add);
-	std::thread t2(Sub);
 	t1.join();
 	t2.join();
-	std::cout << sum << std::endl;
+
+	std::cout << v.size() << std::endl;
 }
