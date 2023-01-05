@@ -1,5 +1,16 @@
-// pch.cpp: source file corresponding to the pre-compiled header
+#pragma once
 
-#include "pch.h"
+#include "Types.h"
+#include <vector>
+#include <list>
+#include <queue>
+#include <stack>
+#include <map>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
 
-// When you are using pre-compiled headers, this source file is necessary for compilation to succeed.
+#include <iostream>
+using namespace std;
+
+void HelloWorld();
