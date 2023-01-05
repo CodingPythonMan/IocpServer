@@ -4,32 +4,74 @@
 #include <thread>
 #include <atomic>
 #include <mutex>
-#include "AccountManager.h"
-#include "UserManager.h"
 
-void Func1()
+class SpinLock
 {
-	for (int32 i = 0; i < 1000; i++)
+public:
+	void lock()
 	{
-		UserManager::Instance()->ProcessSave();
+		// CAS(Compare-And-Swap)
+		bool expected = false;
+		bool desired = true;
+
+		/*// CAS 의사코드
+		if (_locked == expected)
+		{
+			expected = _locked;
+			_locked = desired;
+			return true;
+		}
+		else
+		{
+			expected = _locked;
+			return false;
+		}*/
+
+		while (_locked.compare_exchange_strong(expected, desired) == false)
+		{
+			expected = false;
+		}
+	}
+
+	void unlock()
+	{
+		//_locked = false;
+		_locked.store(false);
+	}
+
+private:
+	std::atomic<bool> _locked = false;
+};
+
+int32 sum = 0;
+std::mutex m;
+SpinLock spinLock;
+
+void Add()
+{
+	for (int32 i = 0; i < 100000; i++)
+	{
+		std::lock_guard<SpinLock> guard(spinLock);
+		sum++;
 	}
 }
 
-void Func2()
+void Sub()
 {
-	for (int32 i = 0; i < 1000; i++)
+	for (int32 i = 0; i < 100000; i++)
 	{
-		AccountManager::Instance()->ProcessLogin();
+		std::lock_guard<SpinLock> guard(spinLock);
+		sum--;
 	}
 }
 
 int main()
 {
-	std::thread t1(Func1);
-	std::thread t2(Func2);
+	std::thread t1(Add);
+	std::thread t2(Sub);
 
 	t1.join();
 	t2.join();
 
-	std::cout << "Jobs Done" << std::endl;
+	std::cout << sum << std::endl;
 }
