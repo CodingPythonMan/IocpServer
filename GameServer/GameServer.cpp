@@ -7,53 +7,44 @@
 #include <windows.h>
 #include <future>
 
-int32 x = 0;
-int32 y = 0;
-int32 r1 = 0;
-int32 r2 = 0;
+std::atomic<bool> ready;
+int32 value;
 
-volatile bool ready;
-
-void Thread_1()
+void Producer()
 {
-	while (!ready)
-		;
+	value = 10;
 
-	y = 1; // Store y
-	r1 = x; // Load x
+	ready.store(true, std::memory_order::memory_order_relaxed);
 }
 
-void Thread_2()
+void Consumer()
 {
-	while (!ready)
-		;
+	while (ready.load(std::memory_order::memory_order_relaxed) == false);
 
-	x = 1; // Store x
-	r2 = y; // Load y
+	std::cout << value << std::endl;
 }
 
 int main()
 {
-	int32 count = 0;
+	ready = false;
+	value = 0;
+	std::thread t1(Producer);
+	std::thread t2(Consumer);
+	t1.join();
+	t2.join();
 
-	while (true)
-	{
-		ready = false;
-		count++;
+	// 메모리 정책
+	// 1) Sequentially Consistent(seq_cst)
+	// 2) Acquire-Release (consume, acquire, release, acq_rel)
+	// 3) Relaxed (relaxed)
 
-		x = y = r1 = r2 = 0;
-
-		std::thread t1(Thread_1);
-		std::thread t2(Thread_2);
+	// 1) seq_cst (가장 엄격 = 컴파일러 최적화 여지 적음 = 직관적)
+	// 가시성 문제 바로 해결! 코드 재배치 바로 해결!
 	
-		ready = true;
-
-		t1.join();
-		t2.join();
-
-		if (r1 == 0 && r2 == 0)
-			break;
-	}
-
-	std::cout << count << "번만에 빠져나옴" << std::endl;
+	// 2) acquire_release
+	
+	// 3) relaxed (자유롭다 = 컴파일러 최적화 여지 많음 = 직관적이지 않음)
+	// 너무나도 자유롭다!
+	// 코드 재배치도 멋대로 가능! 가시성 해결 NO!
+	// 가장 기본 조건 (동일 객체에 대한 동일 관전 순서만 보장)
 }
