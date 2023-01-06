@@ -14,5 +14,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include <windows.h>
 #include <iostream>
 using namespace std;
+
+#include "Lock.h"
