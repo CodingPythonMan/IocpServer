@@ -19,7 +19,7 @@ void Push()
 		int32 value = rand() % 100;
 		s.Push(value);
 
-		//this_thread::sleep_for(10ms);
+		this_thread::sleep_for(10ms);
 	}
 }
 
