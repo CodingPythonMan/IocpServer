@@ -10,6 +10,7 @@
 
 #include "RefCounting.h"
 #include "Memory.h"
+#include "Allocator.h"
 
 class Player 
 {
@@ -42,12 +43,8 @@ public:
 
 int main()
 {
-	// [          []]
-	Knight* knight = (Knight*)xnew<Player>();
-
-	knight->_hp = 100;
-
-	xdelete(knight);
-
+	Vector<Knight> v(100);
 	
+	Map<int32, Knight> m;
+	m[100] = Knight();
 }
