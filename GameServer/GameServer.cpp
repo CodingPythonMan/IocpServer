@@ -9,80 +9,36 @@
 #include "ThreadManager.h"
 #include "RefCounting.h"
 
-class Wraith : public RefCountable
+class Knight
 {
 public:
-	int _hp = 150;
-	int _posX = 0;
-	int _posY = 0;
-};
-
-using WraithRef = TSharedPtr<Wraith>;
-
-class Missile : public RefCountable
-{
-public:
-	void SetTarget(WraithRef target)
+	Knight()
 	{
-		_target = target;
-		// 중간에 개입 가능
-		//target->AddRef();
+		cout << "Knight()" << endl;
 	}
 
-	bool Update()
+	~Knight()
 	{
-		if (_target == nullptr)
-			return true;
-
-		int posX = _target->_posX;
-		int posY = _target->_posY;
-
-		// 쫓아간다.
-
-		if (_target->_hp == 0)
-		{
-			_target->ReleaseRef();
-			_target = nullptr;
-			return true;
-		}
-
-		return false;
+		cout << "~Knight()" << endl;
 	}
-
-	Wraith* _target = nullptr;
 };
-
-
-using MissileRef = TSharedPtr<Missile>;
 
 int main()
 {
-	WraithRef wraith(new Wraith());
-	wraith->ReleaseRef();
-	MissileRef missile(new Missile());
-	missile->ReleaseRef();
+	// 1. 이미 만들어진 클래스 대상으로 사용 불가
+	// 2. 순환 문제
 
-	missile->SetTarget(wraith);
+	// shared_ptr
+	// weak_ptr
+	
+	// [Knight | RefCountingBlock][ngBlock]
+	
+	// [T*][RefCountBlock*]
 
-	// 레이스가 피격 당함
-	wraith->_hp = 0;
-	//delete wraith;
-	//wraith->ReleaseRef();
-	wraith = nullptr;
+	// RefCountBlock(useCount(shared), weakCount)
+	shared_ptr<Knight> spr = make_shared<Knight>();
+	weak_ptr<Knight> wpr = spr;
 
-	while (true)
-	{
-		if (missile)
-		{
-			if (missile->Update())
-			{
-				//missile->ReleaseRef();
-				missile = nullptr;
-			}
-		}
-	}
-
-	//missile->ReleaseRef();
-	missile = nullptr;
-	//delete missile;
+	bool expired = wpr.expired();
+	shared_ptr<Knight> spr2 = wpr.lock();
 }
