@@ -20,8 +20,8 @@ public:
 	Memory();
 	~Memory();
 
-	void* Allocate(int32 size);
-	void Release(void* ptr);
+	void*	Allocate(int32 size);
+	void	Release(void* ptr);
 
 private:
 	vector<MemoryPool*> _pools;
