@@ -27,6 +27,18 @@ public:
 /*-------------------------
 		STLAllocator
 --------------------------*/
+
+class PoolAllocator
+{
+public:
+	static void*	Alloc(int32 size);
+	static void		Release(void* ptr);
+};
+
+/*-------------------------
+		STLAllocator
+--------------------------*/
+
 template<typename T>
 class StlAllocator
 {

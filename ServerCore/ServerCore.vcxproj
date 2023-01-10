@@ -160,6 +160,7 @@
     <ClInclude Include="DeadLockProfiler.h" />
     <ClInclude Include="Lock.h" />
     <ClInclude Include="Memory.h" />
+    <ClInclude Include="MemoryPool.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="RefCounting.h" />
     <ClInclude Include="ThreadManager.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="DeadLockProfiler.cpp" />
     <ClCompile Include="Lock.cpp" />
     <ClCompile Include="Memory.cpp" />
+    <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

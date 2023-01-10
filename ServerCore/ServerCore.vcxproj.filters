@@ -57,6 +57,9 @@
     <ClInclude Include="Container.h">
       <Filter>Memory</Filter>
     </ClInclude>
+    <ClInclude Include="MemoryPool.h">
+      <Filter>Memory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CorePch.cpp">
@@ -90,6 +93,9 @@
       <Filter>Memory</Filter>
     </ClCompile>
     <ClCompile Include="Container.cpp">
+      <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryPool.cpp">
       <Filter>Memory</Filter>
     </ClCompile>
   </ItemGroup>
