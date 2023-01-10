@@ -11,7 +11,14 @@
 #include "RefCounting.h"
 #include "Memory.h"
 
-class Knight
+class Player 
+{
+public:
+	Player() {}
+	virtual ~Player() {}
+};
+
+class Knight : public Player
 {
 public:
 	Knight()
@@ -28,54 +35,19 @@ public:
 	{
 		cout << "~Knight()" << endl;
 	}
-	/*
-	static void* operator new(size_t size)
-	{
-		cout << "knight new! " << size << endl;
-		void* ptr = ::malloc(size);
-		return ptr;
-	}
-
-	static void operator delete(void* ptr)
-	{
-		cout << "knight delete! " << endl;
-		::free(ptr);
-	}*/
 
 	int32 _hp = 100;
 	int32 _mp = 10;
 };
 
-// new operator overloading (Global)
-void* operator new(size_t size)
-{
-	cout << "new! " << size << endl;
-	void* ptr = ::malloc(size);
-	return ptr;
-}
-
-void operator delete(void* ptr)
-{
-	cout << "delete! " << endl;
-	::free(ptr);
-}
-
-void* operator new[](size_t size)
-{
-	cout << "new[]! " << size << endl;
-	void* ptr = ::malloc(size);
-	return ptr;
-}
-
-void operator delete[](void* ptr)
-{
-	cout << "delete[]! " << endl;
-	::free(ptr);
-}
-
 int main()
 {
-	Knight* knight = xnew<Knight>(100);
+	// [          []]
+	Knight* knight = (Knight*)xnew<Player>();
+
+	knight->_hp = 100;
 
 	xdelete(knight);
+
+	
 }
