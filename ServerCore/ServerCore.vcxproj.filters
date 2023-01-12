@@ -66,6 +66,12 @@
     <ClInclude Include="TypeCast.h">
       <Filter>Memory</Filter>
     </ClInclude>
+    <ClInclude Include="SocketUtils.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="NetAddress.h">
+      <Filter>Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CorePch.cpp">
@@ -103,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="MemoryPool.cpp">
       <Filter>Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketUtils.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="NetAddress.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
