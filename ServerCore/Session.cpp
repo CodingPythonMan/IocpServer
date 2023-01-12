@@ -105,8 +105,6 @@ bool Session::RegisterConnect()
 			_connectEvent.owner = nullptr;
 			return false;
 		}
-
-		return false;
 	}
 
 	return true;
