@@ -20,11 +20,11 @@ class IocpEvent : public OVERLAPPED
 public:
 	IocpEvent(EventType type);
 
-	void		Init();
-	EventType	GetType() { return _type; }
+	void			Init();
 
-protected:
-	EventType	_type;
+public:
+	EventType		eventType;
+	IocpObjectRef	owner;
 };
 
 /*---------------
@@ -46,11 +46,8 @@ class AcceptEvent : public IocpEvent
 public:
 	AcceptEvent() : IocpEvent(EventType::Accept) {}
 
-	void		SetSession(Session* session) { _session = session; }
-	Session*	GetSession() { return _session; }
-
-private:
-	Session*	_session = nullptr;
+public:
+	SessionRef	session = nullptr;
 };
 
 /*---------------
