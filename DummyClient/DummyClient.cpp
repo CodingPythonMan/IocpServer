@@ -8,6 +8,11 @@ char sendBuffer[] = "Hello World";
 class ServerSession : public Session
 {
 public:
+	~ServerSession()
+	{
+		cout << "~ServerSession" << endl;
+	}
+
 	virtual void OnConnected() override
 	{
 		cout << "Connected To Server" << endl;
