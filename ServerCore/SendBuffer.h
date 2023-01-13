@@ -13,7 +13,8 @@ public:
 	~SendBuffer();
 
 	BYTE*			Buffer() { return _buffer; }
-	int32			WriteSize() { return _writeSize; }
+	uint32			AllocSize() { return _allocSize; }
+	uint32			WriteSize() { return _writeSize; }
 	void			Close(uint32 writeSize);
 
 private:
