@@ -7,6 +7,7 @@
 #include "GameSessionManager.h"
 #include "BufferWriter.h"
 #include "ServerPacketHandler.h"
+#include <tchar.h>
 
 int main()
 {
@@ -29,12 +30,12 @@ int main()
 		});
 	}
 
-	char sendData[1000] = "Hello World";
+	WCHAR sendData3[1000] = L"가"; // UTF16 = Unicode (한글/로마 2바이트)
 
-	while (true)
+	while (true) 
 	{
 		vector<BuffData> buffs{ BuffData{100, 1.5f}, BuffData{200, 2.3f}, BuffData{300, 0.7f} };
-		SendBufferRef sendBuffer = ServerPacketHandler::Make_S_TEST(1001, 100, 10, buffs);
+		SendBufferRef sendBuffer = ServerPacketHandler::Make_S_TEST(1001, 100, 10, buffs, L"안녕하세요");
 		GSessionManager.BroadCast(sendBuffer);
 
 		this_thread::sleep_for(250ms);
