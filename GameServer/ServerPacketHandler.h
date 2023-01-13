@@ -100,7 +100,7 @@ public:
 		_pkt->buffsCount = 0; // To Fill
 	}
 
-	BuffsList ReserveBuffList(uint16 buffCount)
+	BuffsList ReserveBuffsList(uint16 buffCount)
 	{
 		BuffsListItem* firstBuffsListItem = _bw.Reserve<BuffsListItem>(buffCount);
 		_pkt->buffsOffset = (uint64)firstBuffsListItem - (uint64)_pkt;

@@ -15,7 +15,6 @@ void ClientPacketHandler::HandlePacket(BYTE* buffer, int32 len)
 		Handle_S_TEST(buffer, len);
 		break;
 	}
-	
 }
 
 #pragma pack(1)
@@ -88,7 +87,7 @@ struct PKT_S_TEST
 	BuffsVictimsList GetBuffsVictimList(BuffsListItem* buffsItem)
 	{
 		BYTE* data = reinterpret_cast<BYTE*>(this);
-		data += buffsOffset;
+		data += buffsItem->victimsOffset;
 		return BuffsVictimsList(reinterpret_cast<uint64*>(data), buffsItem->victimsCount);
 	}
 	//vector<int64> buffs;
@@ -110,7 +109,7 @@ void ClientPacketHandler::Handle_S_TEST(BYTE* buffer, int32 len)
 
 	PKT_S_TEST::BuffsList buffs = pkt->GetBuffsList();
 
-	cout << "BuffCount : " << buffs.Count() << endl;
+	cout << "BufCount : " << buffs.Count() << endl;
 
 	for(auto& buff : buffs)
 	{

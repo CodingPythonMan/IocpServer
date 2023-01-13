@@ -16,14 +16,14 @@ public:
 	uint32			FreeSize() { return _size - _pos; }
 
 	template<typename T>
-	bool			Write(T* src) { return Read(src, sizeof(T)); }
+	bool			Write(T* src) { return Write(src, sizeof(T)); }
 	bool			Write(void* src, uint32 len);
 
 	template<typename T>
 	T*				Reserve(uint16 count = 1);
 
 	template<typename T>
-	BufferWriter& operator<<(T&& src);
+	BufferWriter&	operator<<(T&& src);
 
 private:
 	BYTE*			_buffer = nullptr;
@@ -34,7 +34,7 @@ private:
 template<typename T>
 T* BufferWriter::Reserve(uint16 count)
 {
-	if (FreeSize() < sizeof(T))
+	if (FreeSize() < (sizeof(T) * count))
 		return nullptr;
 
 	T* ret = reinterpret_cast<T*>(&_buffer[_pos]);
