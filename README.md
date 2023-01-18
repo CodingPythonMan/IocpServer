@@ -1,6 +1,8 @@
 # Tsundere Elf
-CPP Server Example
+- CPP Game Server
+- Packet processing
 
 # Stack
 - IOCP
 - Protobuf
+- Memory Pool
