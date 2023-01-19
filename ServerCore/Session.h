@@ -27,7 +27,6 @@ public:
 
 public:
 						/* 외부에서 사용 */
-	void				Send(BYTE* buffer, int32 len);
 	void				Send(SendBufferRef sendBuffer);
 	bool				Connect();
 	void				Disconnect(const WCHAR* cause);
