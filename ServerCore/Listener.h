@@ -35,4 +35,3 @@ protected:
 	Vector<AcceptEvent*> _acceptEvents;
 	ServerServiceRef _service;
 };
-
