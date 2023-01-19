@@ -46,7 +46,7 @@ public:
 public:
 						/* 인터페이스 관련 */
 	virtual HANDLE		GetHandle() override;
-	virtual void		Dispatch(class IocpEvent* IocpEvent, int32 numOfBytes = 0) override;
+	virtual void		Dispatch(class IocpEvent* iocpEvent, int32 numOfBytes = 0) override;
 
 private:
 						/* 전송 관련 */
