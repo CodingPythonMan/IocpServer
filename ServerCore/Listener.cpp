@@ -68,10 +68,10 @@ HANDLE Listener::GetHandle()
 	return reinterpret_cast<HANDLE>(_socket);
 }
 
-void Listener::Dispatch(IocpEvent* IocpEvent, int32 numOfBytes)
+void Listener::Dispatch(IocpEvent* iocpEvent, int32 numOfBytes)
 {
-	ASSERT_CRASH(IocpEvent->eventType == EventType::Accept);
-	AcceptEvent* acceptEvent = static_cast<AcceptEvent*>(IocpEvent);
+	ASSERT_CRASH(iocpEvent->eventType == EventType::Accept);
+	AcceptEvent* acceptEvent = static_cast<AcceptEvent*>(iocpEvent);
 	ProcessAccept(acceptEvent);
 }
 
@@ -84,8 +84,7 @@ void Listener::RegisterAccept(AcceptEvent* acceptEvent)
 
 	DWORD bytesReceived;
 	if (false == SocketUtils::AcceptEx(_socket, session->GetSocket(), session->_recvBuffer.WritePos(), 0,
-		sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16,
-		OUT & bytesReceived, static_cast<LPOVERLAPPED>(acceptEvent)))
+		sizeof(SOCKADDR_IN) + 16, sizeof(SOCKADDR_IN) + 16, OUT & bytesReceived, static_cast<LPOVERLAPPED>(acceptEvent)))
 	{
 		const int32 errorCode = ::WSAGetLastError();
 		if (errorCode != WSA_IO_PENDING)

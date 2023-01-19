@@ -21,6 +21,7 @@ public:
 	void CloseSocket();
 
 public:
+	/* 인터페이스 구현 */
 	virtual HANDLE GetHandle() override;
 	virtual void Dispatch(class IocpEvent* iocpEvent, int32 numOfBytes = 0) override;
 
