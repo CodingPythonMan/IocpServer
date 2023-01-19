@@ -23,7 +23,6 @@ SendBufferRef _MakeSendBuffer(T& pkt, uint16 pktId)
 	const uint16 packetSize = dataSize * sizeof(PacketHeader);
 
 	SendBufferRef sendBuffer = GSendBufferManager->Open(packetSize);
-
 	PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
 	header->size = packetSize;
 	header->id = pktId;
