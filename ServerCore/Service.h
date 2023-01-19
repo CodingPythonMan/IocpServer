@@ -62,7 +62,7 @@ public:
 	ClientService(NetAddress targetAddress, IocpCoreRef core, SessionFactory factory, int32 maxSessionCount = 1);
 	virtual ~ClientService() {}
 
-	virtual bool Start() override;
+	virtual bool	Start() override;
 };
 
 /*--------------------
@@ -72,11 +72,11 @@ public:
 class ServerService : public Service
 {
 public:
-	ServerService(NetAddress targetAddress, IocpCoreRef core, SessionFactory factory, int32 maxSessionCount = 1);
+	ServerService(NetAddress address, IocpCoreRef core, SessionFactory factory, int32 maxSessionCount = 1);
 	virtual ~ServerService() {}
 
 	virtual bool	Start() override;
-	virtual void	CloseService();
+	virtual void	CloseService() override;
 
 private:
 	ListenerRef		_listener = nullptr;
