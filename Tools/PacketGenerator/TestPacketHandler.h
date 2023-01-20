@@ -8,26 +8,23 @@ extern PacketHandlerFunc GPacketHandler[UINT16_MAX];
 
 enum : uint16
 {
-	// TODO : 자동화
-	PKT_S_TEST = 1,
-	PKT_S_LOGIN = 2,
-};
+	PKT_C_TEST = 1000,
+	PKT_S_TEST = 1001,
+	PKT_S_LOGIN = 1002,
+}
 
 // Custom Handlers
 bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
-// TODO : 자동화
-bool Handle_S_TEST(PacketSessionRef& session, Protocol::S_TEST& pkt);
+bool Handle_C_TEST(PacketSessionRef& session, Protocol::C_TEST&pkt);
 
-class ServerPacketHandler
+class TestPacketHandler
 {
 public:
 	static void Init()
 	{
-		for(int32 i=0; i<UINT16_MAX; i++)
+		for (int32 i = 0; i < UINT16_MAX; i++)
 			GPacketHandler[0] = Handle_INVALID;
-	
-		// TODO : 자동화
-		GPacketHandler[PKT_S_TEST] = [](PacketSessionRef& session, BYTE* buffer, int32 len) {return HandlePacket<Protocol::S_TEST>(Handle_S_TEST, session, buffer, len); };
+		GPacketHandler[PKT_C_TEST] = [](PacketSessionRef& session, BYTE* buffer, int32 len) {return HandlePacket<Protocol::C_TEST>(Handle_C_TEST, session, buffer, len); };
 	}
 
 	static bool HandlePacket(PacketSessionRef& session, BYTE* buffer, int32 len)
@@ -35,9 +32,7 @@ public:
 		PacketHeader* header = reinterpret_cast<PacketHeader*>(buffer);
 		return GPacketHandler[header->id](session, buffer, len);
 	}
-
-	// TODO : 자동화
-	static SendBufferRef MakeSendBuffer(Protocol::S_TEST& pkt) { return _MakeSendBuffer(pkt, PKT_S_TEST); }
+	static SendBufferRef MakeSendBuffer(Protocol::C_TEST& pkt) { return _MakeSendBuffer(pkt, PKT_C_TEST); }
 
 private:
 	template<typename PacketType, typename ProcessFunc>
