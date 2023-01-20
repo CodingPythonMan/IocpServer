@@ -1,0 +1,2 @@
+protobuf 나 servercore 를 빌드했을 때,
+라이브러리 파일이 나오는 곳.
