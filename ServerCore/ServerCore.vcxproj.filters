@@ -131,9 +131,6 @@
     <ClCompile Include="Memory.cpp">
       <Filter>Memory</Filter>
     </ClCompile>
-    <ClCompile Include="Container.cpp">
-      <Filter>Memory</Filter>
-    </ClCompile>
     <ClCompile Include="MemoryPool.cpp">
       <Filter>Memory</Filter>
     </ClCompile>

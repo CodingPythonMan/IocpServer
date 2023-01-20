@@ -71,16 +71,16 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)Libraries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Libraries\Libs\$(ProjectName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)Libraries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Libraries\Libs\$(ProjectName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)Libraries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Libraries\Libs\$(ProjectName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)Libraries\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)Libraries\Libs\$(ProjectName)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -183,7 +183,6 @@
     <ClCompile Include="Allocator.cpp" />
     <ClCompile Include="BufferReader.cpp" />
     <ClCompile Include="BufferWriter.cpp" />
-    <ClCompile Include="Container.cpp" />
     <ClCompile Include="CoreGlobal.cpp" />
     <ClCompile Include="CorePch.cpp" />
     <ClCompile Include="CoreTLS.cpp" />

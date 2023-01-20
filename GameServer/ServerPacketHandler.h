@@ -20,7 +20,7 @@ template<typename T>
 SendBufferRef _MakeSendBuffer(T& pkt, uint16 pktId)
 {
 	const uint16 dataSize = static_cast<uint16>(pkt.ByteSizeLong());
-	const uint16 packetSize = dataSize * sizeof(PacketHeader);
+	const uint16 packetSize = dataSize + sizeof(PacketHeader);
 
 	SendBufferRef sendBuffer = GSendBufferManager->Open(packetSize);
 	PacketHeader* header = reinterpret_cast<PacketHeader*>(sendBuffer->Buffer());
