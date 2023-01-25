@@ -1,0 +1,7 @@
+Debug 와 Release 가 존재
+protobuf-cpp-3.21.12 를 cmake 를 이용해서 Solution에 넣는다.
+해당 cpp 소스가 나오면 Debug와 Release로 Build 한다.
+
+Debug는 libprotobufd.lib, .pdb
+Release는 libprotobuf.lib 파일들을
+Libraries\Lib\Protobuf 로 이동시킨다.
