@@ -1,8 +1,8 @@
 class ProtoParser():
     def __init__(self, start_id, recv_prefix, send_prefix):
-        self.recv_pkt = [] # ¼ö½Å ÆĞÅ¶ ¸ñ·Ï
-        self.send_pkt = [] # ¼Û½Å ÆĞÅ¶ ¸ñ·Ï
-        self.total_pkt = [] # ¸ğµç ÆĞÅ¶ ¸ñ·Ï
+        self.recv_pkt = [] # ìˆ˜ì‹  íŒ¨í‚· ëª©ë¡
+        self.send_pkt = [] # ì†¡ì‹  íŒ¨í‚· ëª©ë¡
+        self.total_pkt = [] # ëª¨ë“  íŒ¨í‚· ëª©ë¡
         self.start_id = start_id
         self.id = start_id
         self.recv_prefix = recv_prefix
