@@ -1,5 +1,6 @@
 # Tsundere Elf
 - CPP Game Server
+- For practicing
 - Packet processing
 
 # Stack
