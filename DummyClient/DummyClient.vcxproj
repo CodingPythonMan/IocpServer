@@ -104,7 +104,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>CALL $(SolutionDir)Common\protoc-21.12-win64\bin\GenPackets.bat</Command>
+      <Command>CALL $(SolutionDir)Common\Protobuf21\bin\GenPackets.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,7 +125,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>CALL $(SolutionDir)Common\protoc-21.12-win64\bin\GenPackets.bat</Command>
+      <Command>CALL $(SolutionDir)Common\Protobuf21\bin\GenPackets.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -142,7 +142,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>CALL $(SolutionDir)Common\protoc-21.12-win64\bin\GenPackets.bat</Command>
+      <Command>CALL $(SolutionDir)Common\Protobuf21\bin\GenPackets.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -163,11 +163,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>CALL $(SolutionDir)Common\protoc-21.12-win64\bin\GenPackets.bat</Command>
+      <Command>CALL $(SolutionDir)Common\Protobuf21\bin\GenPackets.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ClientPacketHandler.cpp" />
+    <ClCompile Include="ServerPacketHandler.cpp" />
     <ClCompile Include="DummyClient.cpp" />
     <ClCompile Include="Enum.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
@@ -195,22 +195,21 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ClientPacketHandler.h" />
+    <ClInclude Include="ServerPacketHandler.h" />
     <ClInclude Include="Enum.pb.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Protocol.pb.h" />
     <ClInclude Include="Struct.pb.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Common\protoc-21.12-win64\bin\Enum.proto" />
-    <None Include="..\Common\protoc-21.12-win64\bin\GenPackets.bat" />
-    <None Include="..\Common\protoc-21.12-win64\bin\Protocol.proto" />
-    <None Include="..\Common\protoc-21.12-win64\bin\Struct.proto" />
-  </ItemGroup>
-  <ItemGroup>
     <UpToDateCheckInput Include="..\Common\protoc-21.12-win64\bin\Enum.proto" />
     <UpToDateCheckInput Include="..\Common\protoc-21.12-win64\bin\Protocol.proto" />
     <UpToDateCheckInput Include="..\Common\protoc-21.12-win64\bin\Struct.proto" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Common\Protobuf21\bin\Enum.proto" />
+    <None Include="..\Common\Protobuf21\bin\Protocol.proto" />
+    <None Include="..\Common\Protobuf21\bin\Struct.proto" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,7 +18,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
-    <ClCompile Include="ClientPacketHandler.cpp">
+    <ClCompile Include="ServerPacketHandler.cpp">
       <Filter>Main</Filter>
     </ClCompile>
     <ClCompile Include="Protocol.pb.cc">
@@ -35,7 +35,7 @@
     <ClInclude Include="pch.h">
       <Filter>Utils</Filter>
     </ClInclude>
-    <ClInclude Include="ClientPacketHandler.h">
+    <ClInclude Include="ServerPacketHandler.h">
       <Filter>Main</Filter>
     </ClInclude>
     <ClInclude Include="Protocol.pb.h">
@@ -49,16 +49,13 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Common\protoc-21.12-win64\bin\Enum.proto">
+    <None Include="..\Common\Protobuf21\bin\Enum.proto">
       <Filter>Protocol</Filter>
     </None>
-    <None Include="..\Common\protoc-21.12-win64\bin\Protocol.proto">
+    <None Include="..\Common\Protobuf21\bin\Protocol.proto">
       <Filter>Protocol</Filter>
     </None>
-    <None Include="..\Common\protoc-21.12-win64\bin\Struct.proto">
-      <Filter>Protocol</Filter>
-    </None>
-    <None Include="..\Common\protoc-21.12-win64\bin\GenPackets.bat">
+    <None Include="..\Common\Protobuf21\bin\Struct.proto">
       <Filter>Protocol</Filter>
     </None>
   </ItemGroup>

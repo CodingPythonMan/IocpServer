@@ -11,7 +11,7 @@ enum : uint16
 	PKT_C_TEST = 1000,
 	PKT_S_TEST = 1001,
 	PKT_S_LOGIN = 1002,
-}
+};
 
 // Custom Handlers
 bool Handle_INVALID(PacketSessionRef& session, BYTE* buffer, int32 len);
