@@ -4,6 +4,10 @@
 #include "CoreGlobal.h"
 #include "GlobalQueue.h"
 
+/*------------------
+	ThreadManager
+-------------------*/
+
 ThreadManager::ThreadManager()
 {
 	// Main Thread

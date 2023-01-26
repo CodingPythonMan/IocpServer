@@ -16,4 +16,3 @@ public:
 private:
 	LockQueue<JobQueueRef>	_jobQueues;
 };
-

@@ -33,4 +33,3 @@ protected:
 	LockQueue<JobRef>	_jobs;
 	Atomic<int32>		_jobCount = 0;
 };
-
