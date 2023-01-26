@@ -25,6 +25,8 @@ public:
 
 private:
 	void				Push(JobRef&& job);
+
+public:
 	void				Execute();
 
 protected:
