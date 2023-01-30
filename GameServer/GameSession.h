@@ -6,7 +6,7 @@ class GameSession : public PacketSession
 public:
 	~GameSession()
 	{
-		cout << "~ServerSession" << endl;
+		cout << "~GameSession" << endl;
 	}
 
 	virtual void OnConnected() override;
@@ -16,4 +16,7 @@ public:
 
 public:
 	Vector<PlayerRef> _players;
+
+	PlayerRef _currentPlayer;
+	weak_ptr<class Room> _room;
 };
