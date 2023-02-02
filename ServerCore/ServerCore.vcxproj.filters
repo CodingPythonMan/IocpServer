@@ -123,6 +123,9 @@
     <ClInclude Include="DBConnection.h">
       <Filter>DB</Filter>
     </ClInclude>
+    <ClInclude Include="DBConnectionPool.h">
+      <Filter>DB</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CorePch.cpp">
@@ -207,6 +210,9 @@
       <Filter>Job</Filter>
     </ClCompile>
     <ClCompile Include="DBConnection.cpp">
+      <Filter>DB</Filter>
+    </ClCompile>
+    <ClCompile Include="DBConnectionPool.cpp">
       <Filter>DB</Filter>
     </ClCompile>
   </ItemGroup>

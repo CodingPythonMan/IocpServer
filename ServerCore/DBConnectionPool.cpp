@@ -32,6 +32,8 @@ bool DBConnectionPool::Connect(int32 connectionCount, const WCHAR* connectionStr
 
 		_connections.push_back(connection);
 	}
+
+	return true;
 }
 
 void DBConnectionPool::Clear()
