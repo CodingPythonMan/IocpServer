@@ -44,7 +44,7 @@ void DBConnection::Clear()
 	if (_statement != SQL_NULL_HANDLE)
 	{
 		::SQLFreeHandle(SQL_HANDLE_STMT, _statement);
-		_connection = SQL_NULL_HANDLE;
+		_statement = SQL_NULL_HANDLE;
 	}
 }
 

@@ -71,6 +71,8 @@ int main()
 
 		// SQL ½ÇÇà
 		ASSERT_CRASH(dbConn->Execute(L"INSERT INTO [dbo].[Gold]([gold]) VALUES(?)"));
+		
+		GDBConnectionPool->Push(dbConn);
 	}
 
 	// Read
@@ -99,6 +101,7 @@ int main()
 		{
 			cout << "id : " << outId << " Gold : " << outGold << endl;
 		}
+
 		GDBConnectionPool->Push(dbConn);
 	}
 
