@@ -15,6 +15,7 @@
 #include "DBBind.h"
 #include "XmlParser.h"
 #include "DBSynchronizer.h"
+#include "GenProcedures.h"
 
 enum
 {
@@ -45,6 +46,38 @@ int main()
 	DBConnection* dbConn = GDBConnectionPool->Pop();
 	DBSynchronizer dbSync(*dbConn);
 	dbSync.Synchronize(L"GameDB.xml");
+
+	{
+		WCHAR name[] = L"Ãùµ¥·¹ ¿¤ÇÁ";
+		SP::InsertGold insertGold(*dbConn);
+		insertGold.In_Gold(100);
+		insertGold.In_Name(name);
+		insertGold.In_CreateDate(TIMESTAMP_STRUCT{ 2023, 02, 17 });
+		insertGold.Execute();
+	}
+
+	{
+		SP::GetGold getGold(*dbConn);
+		getGold.In_Gold(100);
+
+		int32 id = 0;
+		int32 gold = 0;
+		WCHAR name[100];
+		TIMESTAMP_STRUCT date;
+
+		getGold.Out_Id(OUT id);
+		getGold.Out_Gold(OUT gold);
+		getGold.Out_Name(OUT name);
+		getGold.Out_CreateDate(OUT date);
+
+		getGold.Execute();
+
+		while (getGold.Fetch())
+		{
+			GConsoleLogger->WriteStdOut(Color::BLUE,
+				L"ID[%d] Gold[%d] Name[%s]\n", id, gold, name);
+		}
+	}
 
 	ClientPacketHandler::Init();
 
