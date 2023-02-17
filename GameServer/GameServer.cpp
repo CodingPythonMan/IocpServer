@@ -48,7 +48,9 @@ int main()
 			CREATE TABLE [dbo].[Gold]					\
 			(											\
 				[id] INT NOT NULL PRIMARY KEY IDENTITY,	\
-				[gold] INT NULL							\
+				[gold] INT NULL,						\
+				[name] NVARCHAR(50) NULL,				\
+				[createDate] DATETIME NULL,				\
 			);";
 
 		DBConnection* dbConn = GDBConnectionPool->Pop();
@@ -66,11 +68,23 @@ int main()
 
 		int32 gold = 100;
 		SQLLEN len = 0;
+
+		WCHAR name[100] = L"츤데레 엘프";
+		SQLLEN nameLen = 0;
+
+		TIMESTAMP_STRUCT ts = {};
+		ts.year = 2023;
+		ts.month = 2;
+		ts.day = 17;
+		SQLLEN tsLen = 0;
+
 		// 넘길 인자 바인딩
-		ASSERT_CRASH(dbConn->BindParam(1, SQL_C_LONG, SQL_INTEGER, sizeof(gold), &gold, &len));
+		ASSERT_CRASH(dbConn->BindParam(1, &gold, &len));
+		ASSERT_CRASH(dbConn->BindParam(2, name, &nameLen));
+		ASSERT_CRASH(dbConn->BindParam(3, &ts, &tsLen));
 
 		// SQL 실행
-		ASSERT_CRASH(dbConn->Execute(L"INSERT INTO [dbo].[Gold]([gold]) VALUES(?)"));
+		ASSERT_CRASH(dbConn->Execute(L"INSERT INTO [dbo].[Gold]([gold], [name], [createDate]) VALUES(?, ?, ?)"));
 		
 		GDBConnectionPool->Push(dbConn);
 	}
@@ -84,22 +98,33 @@ int main()
 		int32 gold = 100;
 		SQLLEN len = 0;
 		// 넘길 인자 바인딩
-		ASSERT_CRASH(dbConn->BindParam(1, SQL_C_LONG, SQL_INTEGER, sizeof(gold), &gold, &len));
+		ASSERT_CRASH(dbConn->BindParam(1, &gold, &len));
 
 		int32 outId = 0;
 		SQLLEN outIdLen = 0;
-		ASSERT_CRASH(dbConn->BindCol(1, SQL_C_LONG, sizeof(outId), &outId, &outIdLen));
+		ASSERT_CRASH(dbConn->BindCol(1, &outId, &outIdLen));
 
 		int32 outGold = 0;
 		SQLLEN outGoldLen = 0;
-		ASSERT_CRASH(dbConn->BindCol(2, SQL_C_LONG, sizeof(outGold), &outGold, &outGoldLen));
+		ASSERT_CRASH(dbConn->BindCol(2, &outGold, &outGoldLen));
+
+		WCHAR outName[100];
+		SQLLEN outNameLen = 0;
+		ASSERT_CRASH(dbConn->BindCol(3, outName, len32(outName), &outNameLen));
+
+		TIMESTAMP_STRUCT outDate = {};
+		SQLLEN outDateLen = 0;
+		ASSERT_CRASH(dbConn->BindCol(4, &outDate, &outDateLen));
 
 		// SQL 실행
-		ASSERT_CRASH(dbConn->Execute(L"SELECT id, gold FROM [dbo].[Gold] WHERE gold = (?)"));
+		ASSERT_CRASH(dbConn->Execute(L"SELECT id, gold, name, createDate FROM [dbo].[Gold] WHERE gold = (?)"));
 	
+		wcout.imbue(locale("kor"));
+
 		while (dbConn->Fetch())
 		{
-			cout << "id : " << outId << " Gold : " << outGold << endl;
+			wcout << "id : " << outId << " Gold : " << outGold << " Name : " << outName << endl;
+			wcout << "Date : " << outDate.year << "/" << outDate.month << "/" << outDate.day << endl;
 		}
 
 		GDBConnectionPool->Push(dbConn);
