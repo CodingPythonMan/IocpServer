@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <GameDB>
-  <Table name="Gold">
+  <Table name="Gold" desc="골드 테이블">
     <Column name="id" type="int" notnull="true" />
     <Column name="gold" type="int" notnull="false" />
     <Column name="name" type="nvarchar(50)" notnull="false"/>
