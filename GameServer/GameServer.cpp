@@ -12,6 +12,7 @@
 #include "Room.h"
 #include "Player.h"
 #include "DBConnectionPool.h"
+#include "DBBind.h"
 
 enum
 {
@@ -63,6 +64,18 @@ int main()
 	{
 		DBConnection* dbConn = GDBConnectionPool->Pop();
 
+		DBBind<3, 0> dbBind(*dbConn, L"INSERT INTO [dbo].[Gold]([gold], [name], [createDate]) VALUES(?, ?, ?)");
+
+		int32 gold = 100;
+		dbBind.BindParam(0, gold);
+		WCHAR name[100] = L"츤데레 엘프";
+		dbBind.BindParam(1, name);
+		TIMESTAMP_STRUCT ts = {2023, 2, 17};
+		dbBind.BindParam(2, ts);
+
+		ASSERT_CRASH(dbBind.Execute());
+
+		/*
 		// 기존에 바인딩 된 정보 날림
 		dbConn->Unbind();
 
@@ -85,13 +98,31 @@ int main()
 
 		// SQL 실행
 		ASSERT_CRASH(dbConn->Execute(L"INSERT INTO [dbo].[Gold]([gold], [name], [createDate]) VALUES(?, ?, ?)"));
-		
+		*/
 		GDBConnectionPool->Push(dbConn);
 	}
 
 	// Read
 	{
 		DBConnection* dbConn = GDBConnectionPool->Pop();
+
+		DBBind<1, 4> dbBind(*dbConn, L"SELECT id, gold, name, createDate FROM [dbo].[Gold] WHERE gold = (?)");
+
+		int32 gold = 100;
+		dbBind.BindParam(0, gold);
+
+		int32 outId = 0;
+		int32 outGold = 0;
+		WCHAR outName[100];
+		TIMESTAMP_STRUCT outDate = {};
+		
+		dbBind.BindCol(0, OUT outId);
+		dbBind.BindCol(1, OUT outGold);
+		dbBind.BindCol(2, OUT outName);
+		dbBind.BindCol(3, OUT outDate);
+
+		ASSERT_CRASH(dbBind.Execute());
+		/*
 		// 기존에 바인딩 된 정보 날림
 		dbConn->Unbind();
 
@@ -119,6 +150,8 @@ int main()
 		// SQL 실행
 		ASSERT_CRASH(dbConn->Execute(L"SELECT id, gold, name, createDate FROM [dbo].[Gold] WHERE gold = (?)"));
 	
+		*/
+
 		wcout.imbue(locale("kor"));
 
 		while (dbConn->Fetch())
