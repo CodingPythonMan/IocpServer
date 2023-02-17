@@ -13,6 +13,9 @@
     <Filter Include="GameContents">
       <UniqueIdentifier>{0ac5b3d0-295e-41df-9405-84eb378ef936}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Main\DB">
+      <UniqueIdentifier>{b1031e66-cce0-414b-91cd-e5d895692e02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameServer.cpp">
@@ -85,5 +88,10 @@
     <None Include="..\Common\Protobuf21\bin\Enum.proto">
       <Filter>Protocol</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="GameDB.xml">
+      <Filter>Main\DB</Filter>
+    </Xml>
   </ItemGroup>
 </Project>
