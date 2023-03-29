@@ -1,4 +1,4 @@
-# Tsundere Elf
+# C++ Server (Tsundere Elf)
 - CPP Game Server
 - For practicing
 - Packet processing
