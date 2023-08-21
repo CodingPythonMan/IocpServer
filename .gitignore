@@ -329,6 +329,5 @@ __pycache__/
 # End of https://www.gitignore.io/api/c++,visualstudio
 ZipDataTables
 
-/Config/WebServerConfigDev.json
-/Config/DBDev.json
-/Config/DBListDev.json
+!libprotobufd.lib
+!libprotobufd.pdb
