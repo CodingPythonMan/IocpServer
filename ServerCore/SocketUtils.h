@@ -34,5 +34,6 @@ public:
 template<typename T>
 static inline bool SetSockOpt(SOCKET socket, int32 level, int32 optName, T optVal)
 {
+	// optVal 로 설정하는 건 네이글 알고리즘 관련이다.
 	return SOCKET_ERROR != ::setsockopt(socket, level, optName, reinterpret_cast<char*>(&optVal), sizeof(T));
 }

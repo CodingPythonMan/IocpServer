@@ -39,6 +39,7 @@ bool SocketUtils::SetLinger(SOCKET socket, uint16 onoff, uint16 linger)
 	LINGER option;
 	option.l_onoff = onoff;
 	option.l_linger = linger;
+	// option 에 따라 Nagle 을 설정한다고 생각하면 된다.
 	return SetSockOpt(socket, SOL_SOCKET, SO_LINGER, option);
 }
 
